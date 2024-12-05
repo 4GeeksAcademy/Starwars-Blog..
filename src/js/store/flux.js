@@ -1,6 +1,9 @@
+import Favoritos from "../component/favoritos";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
+			favoritos: [],
 			demo: [
 				{
 					title: "FIRST",
@@ -15,6 +18,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 			]
 		},
 		actions: {
+			//Agregar un Fvorito
+			addFavorito: item => {
+				const store = getStore();
+				if (!store.favoritos.some(favorito => favorito.uid === item.iud)) {
+					setStore({ favoritos: [...store.favoritos, item] });
+				}
+			},
+			//Eliminar un Favorito
+			removeFavorito: item => {
+				const store = getStore();
+				setStore({
+					favoritos: store.favoritos.filter(favorito => favorito.uid !== item.uid)
+				});
+			},
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");

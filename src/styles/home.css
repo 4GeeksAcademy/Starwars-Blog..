@@ -1,0 +1,38 @@
+/* Estilos para la página principal */
+.container {
+    margin-top: 20px;
+  }
+  
+  .section {
+    margin-top: 40px;
+  }
+  
+  .section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .card {
+    border: 1px solid #dee2e6;
+    border-radius: 0.25rem;
+    margin-bottom: 20px;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  
+  .card-text {
+    font-size: 1rem;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+  }  

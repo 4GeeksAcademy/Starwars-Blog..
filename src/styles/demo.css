@@ -1,0 +1,32 @@
+/* Estilos para la página de demostración */
+.container {
+    margin-top: 20px;
+  }
+  
+  .list-group-item {
+    transition: background-color 0.3s ease;
+  }
+  
+  .list-group-item:hover {
+    background-color: #f8f9fa;
+  }
+  
+  .section {
+    margin-top: 40px;
+  }
+  
+  .section h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+  }
+  

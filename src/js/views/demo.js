@@ -1,15 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-
 import { Context } from "../store/appContext";
-
+import Personas from "../component/personas";
+import Vehiculos from "../component/vehiculos";
+import Planetas from "../component/planetas";
 import "../../styles/demo.css";
+
 
 export const Demo = () => {
 	const { store, actions } = useContext(Context);
 
 	return (
 		<div className="container">
+			<h1>Demo de Funcionalidades</h1>
 			<ul className="list-group">
 				{store.demo.map((item, index) => {
 					return (
@@ -35,9 +38,23 @@ export const Demo = () => {
 				})}
 			</ul>
 			<br />
+			<div className="section">
+				<h2>Personas</h2>
+				<Personas />
+			</div>
+			<div className="section">
+				<h2>Vehiculos</h2>
+				<Vehiculos />
+			</div>
+			<div className="section">
+				<h2>Planetas</h2>
+				<Planetas />
+			</div>
+			<br />
 			<Link to="/">
 				<button className="btn btn-primary">Back home</button>
 			</Link>
 		</div>
 	);
 };
+export default Demo;

@@ -1,26 +1,42 @@
-import React, { useState, useEffect, useContext } from "react";
-import PropTypes from "prop-types";
-import { Link, useParams } from "react-router-dom";
-import { Context } from "../store/appContext";
+import React, { useEffect, useState, useContext } from 'react';
+import { useParams } from 'react-router-dom';
+import { Context } from '../store/appContext';
 
-export const Single = props => {
-	const { store, actions } = useContext(Context);
-	const params = useParams();
-	return (
-		<div className="jumbotron">
-			<h1 className="display-4">This will show the demo element: {store.demo[params.theid].title}</h1>
+const Single = () => {
+  const { store, actions } = useContext(Context);
+  const { theid } = useParams();
+  const [entity, setEntity] = useState(null);
 
-			<hr className="my-4" />
+  useEffect(() => {
+    fetch(`https://www.swapi.tech/api/people/${theid}`)
+      .then(response => response.json())
+      .then(data => setEntity(data.result.properties))
+      .catch(error => console.error('Error fetching entity:', error));
+  }, [theid]);
 
-			<Link to="/">
-				<span className="btn btn-primary btn-lg" href="#" role="button">
-					Back home
-				</span>
-			</Link>
-		</div>
-	);
+  return (
+    <div className="container">
+      {entity ? (
+        <div className="card">
+          <div className="card-body">
+            <h5 className="card-title">{entity.name}</h5>
+            <p className="card-text">Altura: {entity.height}</p>
+            <p className="card-text">Peso: {entity.mass}</p>
+            <p className="card-text">Color de cabello: {entity.hair_color}</p>
+            <p className="card-text">Color de piel: {entity.skin_color}</p>
+            <p className="card-text">Color de ojos: {entity.eye_color}</p>
+            <p className="card-text">Año de nacimiento: {entity.birth_year}</p>
+            <p className="card-text">Género: {entity.gender}</p>
+            <button className="btn btn-primary" onClick={() => actions.addFavorito(entity)}>
+              Agregar a Favoritos
+            </button>
+          </div>
+        </div>
+      ) : (
+        <p>Cargando...</p>
+      )}
+    </div>
+  );
 };
 
-Single.propTypes = {
-	match: PropTypes.object
-};
+export default Single;
